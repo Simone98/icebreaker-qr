@@ -5,11 +5,13 @@ import { compressToEncodedURIComponent } from "lz-string";
 export default function App() {
   const [baseUrl, setBaseUrl] = useState("https://tuosito.it");
 
-  const [personaggio, setPersonaggio] = useState("Bellissima fanciulla");
+  const [personaggio, setPersonaggio] = useState("Amogus");
   const [colore, setColore] = useState("#ff00ff");
   const [frase, setFrase] = useState(
     "Frase di esempio che può essere lunga"
   );
+  // 1. NUOVO STATO PER IL BOOLEAN
+  const [isInglese, setIsInglese] = useState(false);
 
   const encodedData = useMemo(() => {
     return compressToEncodedURIComponent(
@@ -17,9 +19,10 @@ export default function App() {
         personaggio,
         colore,
         frase,
+        isInglese, // 2. AGGIUNTO ALL'OGGETTO COMPRESSO
       })
     );
-  }, [personaggio, colore, frase]);
+  }, [personaggio, colore, frase, isInglese]); // 3. AGGIUNTA LA DIPENDENZA QUI
 
   const finalUrl = useMemo(() => {
     const cleanBase = baseUrl.replace(/\/$/, "");
@@ -63,7 +66,17 @@ export default function App() {
           />
         </label>
 
-        <label>
+        <label style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+          <input
+            type="checkbox"
+            checked={isInglese}
+            onChange={(e) => setIsInglese(e.target.checked)}
+            style={{ width: 18, height: 18, cursor: "pointer" }}
+          />
+          <div style={{ fontWeight: "bold", cursor: "pointer" }}>Imposta lingua in Inglese (isInglese)</div>
+        </label>
+
+        <label style={{ marginTop: 4 }}>
           <div>Colore</div>
           <input
             type="color"
