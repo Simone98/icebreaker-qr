@@ -3,7 +3,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { compressToEncodedURIComponent } from "lz-string";
 
 export default function App() {
-  const [baseUrl, setBaseUrl] = useState("https://tuosito.it");
+  const [baseUrl, setBaseUrl] = useState("https://icebreaker-six-topaz.vercel.app");
 
   const [personaggio, setPersonaggio] = useState("Amogus");
   const [colore, setColore] = useState("#ff00ff");
